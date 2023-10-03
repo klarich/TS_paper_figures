@@ -2,11 +2,16 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 from scipy.stats import norm
 
+# Read in the data
 data_filepath = "data/r57673.csv"
 df = pd.read_csv(data_filepath)
 
+# Read in the image
+img_path = 'figures/r57673.png'
+img = plt.imread(img_path)
 
 tanimoto_combo = df['TanimotoCombo']
 mean_tanimoto = np.mean(tanimoto_combo)
@@ -35,6 +40,10 @@ plt.legend(frameon=False)
 plt.grid(axis='y')
 ax.yaxis.grid(True, linestyle='-', which='major', color='lightgrey', alpha=0.5)
 ax.xaxis.grid(True, linestyle='-', which='major', color='lightgrey', alpha=0.5)
+
+imagebox = OffsetImage(img, zoom=0.2)  # zoom parameter to scale the image
+ab = AnnotationBbox(imagebox, (xmax, p.max()), frameon=False, box_alignment=(1, 1), bboxprops=dict(edgecolor='none'))
+ax.add_artist(ab)
 
 # Show the plot
 plt.tight_layout()
