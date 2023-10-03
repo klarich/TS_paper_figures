@@ -41,7 +41,8 @@ plt.grid(axis='y')
 ax.yaxis.grid(True, linestyle='-', which='major', color='lightgrey', alpha=0.5)
 ax.xaxis.grid(True, linestyle='-', which='major', color='lightgrey', alpha=0.5)
 
-imagebox = OffsetImage(img, zoom=0.2)  # zoom parameter to scale the image
+# Overlay the figure with an image of the reagent
+imagebox = OffsetImage(img, zoom=0.3)  # zoom parameter to scale the image
 ab = AnnotationBbox(imagebox, (xmax, p.max()), frameon=False, box_alignment=(1, 1), bboxprops=dict(edgecolor='none'))
 ax.add_artist(ab)
 
