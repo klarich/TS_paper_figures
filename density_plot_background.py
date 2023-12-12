@@ -3,7 +3,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
-from scipy.stats import norm, zscore
+from scipy.stats import norm
 
 
 def density_plot(data_fp: str, output_fp: str, img_path: str = None, score: str = 'TanimotoCombo', vertical_line: float = None, color: str = 'orange'):
@@ -28,7 +28,8 @@ def density_plot(data_fp: str, output_fp: str, img_path: str = None, score: str 
     # Add a verticle bar
     if vertical_line is not None:
         plt.axvline(x=vertical_line, color='black', linestyle='dashed', linewidth=2)
-        plt.text(x=vertical_line-.05, y=1., s=f'{score} = {vertical_line}', rotation=90)
+        z_score = (vertical_line - mean_tanimoto) / std_tanimoto
+        plt.text(x=vertical_line-.03, y=1.0, s=f'{score} = {vertical_line}, Z score = {z_score:.1f}', rotation=90, fontdict={'fontsize': 14})
     # Add labels and title
     plt.xlabel('TanimotoCombo Score', fontsize=20)
     plt.ylabel('Density', fontsize=20)
@@ -52,8 +53,4 @@ def density_plot(data_fp: str, output_fp: str, img_path: str = None, score: str 
 
 if __name__ == "__main__":
     import fire
-    # data_fp = "data/r57673.csv"
-    # img_path = 'figures/r57673.png'
-    # score = 'TanimotoCombo'
-    # output_fp = f"figures/density_plot_reagent_57673.png"
     fire.Fire(density_plot)
