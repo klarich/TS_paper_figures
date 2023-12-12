@@ -6,8 +6,7 @@ from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 from scipy.stats import norm
 
 # Read in the data
-data_filepath = "data/r57673.csv"
-df = pd.read_csv(data_filepath)
+df = pd.read_csv("data/r57673.csv")
 
 # Read in the image
 img_path = 'figures/r57673.png'
@@ -50,5 +49,3 @@ ax.add_artist(ab)
 plt.tight_layout()
 plt.savefig(f"figures/density_plot_reagent_57673.png")
 plt.show()
-
-
