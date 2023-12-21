@@ -28,6 +28,6 @@ def get_n_random_lines(path, n):
 
 if __name__ == "__main__":
     lines = get_n_random_lines(PATH, 10000)
-    with open('ROCS_10k_random_from_full_enumeration.csv', 'w') as f:
+    with open('rocs_scores_random_10000.csv', 'w') as f:
         for line in lines:
             f.write(f"{line}\n")
