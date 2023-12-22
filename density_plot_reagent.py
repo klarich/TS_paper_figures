@@ -6,7 +6,7 @@ from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 from scipy.stats import norm
 
 # Read in the data
-df = pd.read_csv("data/r57673.csv")
+df = pd.read_csv("data/rocs_scores_random_reagent.csv")
 
 # Read in the image
 img_path = 'figures/r57673.png'
